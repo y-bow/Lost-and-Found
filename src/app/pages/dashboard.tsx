@@ -93,9 +93,35 @@ const demoItems: LostFoundItem[] = [
 export function DashboardPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
+  useEffect(() => {
+  try {
+    const userData = localStorage.getItem("user");
+
+    if (userData) {
+      setUser(JSON.parse(userData));
+    } else {
+      // Fallback so dashboard always shows
+      setUser({
+        name: "Guest User",
+        contactNumber: ""
+      });
+    }
+  } catch (err) {
+    setUser({
+      name: "Guest User",
+      contactNumber: ""
+    });
+  }
+}, []);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [items, setItems] = useState<LostFoundItem[]>([]);
+  useEffect(() => {
+  if (!Array.isArray(items)) {
+    setItems([]);
+  }
+}, [items]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newItem, setNewItem] = useState<Partial<LostFoundItem>>({
     type: "lost",
@@ -113,7 +139,13 @@ export function DashboardPage() {
     try {
       const res = await fetch("/.netlify/functions/getitems");
       const data = await res.json();
-      setItems(data);
+      if (Array.isArray(data)) {
+  setItems(data);
+} else {
+  console.error("API returned:", data);
+  setItems([]);
+}
+
     } catch (err) {
       console.error("Failed to load items", err);
     }
@@ -211,7 +243,8 @@ export function DashboardPage() {
     }
   };
 
-  const filteredItems = items.filter((item) => {
+  const safeItems = Array.isArray(items) ? items : [];
+  const filteredItems = safeItems.filter((item) => {
     const matchesSearch = 
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -222,7 +255,7 @@ export function DashboardPage() {
     return matchesSearch && matchesCategory;
   });
 
-  if (!user) return null;
+  if (!user) return <div style={{padding: 40}}>Loading user...</div>;
 
   return (
     <div className="min-h-screen relative overflow-hidden">

@@ -1,14 +1,10 @@
-import { Pool } from 'pg';
+import { Pool } from "pg";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
 export const handler = async (event) => {
-  if (event.httpMethod !== 'GET') {
-    return { statusCode: 405, body: 'Method not allowed' };
-  }
-
   try {
     const result = await pool.query(
       "SELECT * FROM items ORDER BY id DESC"
@@ -16,9 +12,11 @@ export const handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(result.rows),
     };
-
   } catch (error) {
     return {
       statusCode: 500,
