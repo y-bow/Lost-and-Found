@@ -95,7 +95,7 @@ export function DashboardPage() {
   const [user, setUser] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [items, setItems] = useState<LostFoundItem[]>(demoItems);
+  const [items, setItems] = useState<LostFoundItem[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newItem, setNewItem] = useState<Partial<LostFoundItem>>({
     type: "lost",
@@ -109,15 +109,18 @@ export function DashboardPage() {
   const [imagePreview, setImagePreview] = useState<string>("");
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const userData = localStorage.getItem("user");
-    
-    if (!isLoggedIn || !userData) {
-      navigate("/");
-    } else {
-      setUser(JSON.parse(userData));
+  const loadItems = async () => {
+    try {
+      const res = await fetch("/.netlify/functions/getitems");
+      const data = await res.json();
+      setItems(data);
+    } catch (err) {
+      console.error("Failed to load items", err);
     }
-  }, [navigate]);
+  };
+
+  loadItems();
+}, []);
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -187,7 +190,9 @@ export function DashboardPage() {
         contactNumber: user?.contactNumber || "",
       };
 
-      setItems([item, ...items]);
+      const res = await fetch("/.netlify/functions/getitems");
+      const updated = await res.json();
+      setItems(updated);
       setIsDialogOpen(false);
       setNewItem({
         type: "lost",
