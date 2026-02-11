@@ -1,0 +1,181 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Minimalistic Aesthetic Palette - Softer Backgrounds */
+  /* Background: Darker but not pure black */
+  --background: #1e1e22; /* Darker bg */
+  --foreground: #f8fafc; /* Soft White */
+
+  /* Cards: Lighter medium gray */
+  --card: #3e3e42;
+  --card-foreground: #f8fafc;
+
+  /* Popovers */
+  --popover: #3e3e42;
+  --popover-foreground: #f8fafc;
+
+  /* Primary: Lavender */
+  --primary: #c7a6e0;
+  --primary-foreground: #1a1a1d;
+
+  /* Secondary: Subtle Gray */
+  --secondary: #4a4a4e;
+  --secondary-foreground: #f8fafc;
+
+  /* Muted: Medium Gray */
+  --muted: #3e3e42;
+  --muted-foreground: #c7a6e0; /* Lavender text for muted */
+
+  /* Accent: Light Lavender */
+  --accent: #dfb4f4;
+  --accent-foreground: #1a1a1d;
+
+  /* Destructive */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Borders & Inputs - Lavender tones */
+  --border: #c7a6e0; /* Lavender Border */
+  --input: #3e3e42;
+  --input-background: #3e3e42;
+  --switch-background: #4a4a4e;
+
+  /* Ring - Lavender */
+  --ring: #dfb4f4; /* Light Lavender Ring */
+
+  /* Charts - Lavender palette */
+  --chart-1: #d19ce0; /* Darker Lavender */
+  --chart-2: #c7a6e0; /* Medium Lavender */
+  --chart-3: #dfb4f4; /* Light Lavender */
+  --chart-4: #c7a6e0; /* Medium Lavender */
+  --chart-5: #d19ce0; /* Darker Lavender */
+
+  /* Radius */
+  --radius: 1rem;
+
+  /* Fonts */
+  --font-size: 16px;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  /* Sidebar */
+  --sidebar: #1e1e22;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #c7a6e0;
+  --sidebar-primary-foreground: #1a1a1d;
+  --sidebar-accent: #3e3e42;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #c7a6e0;
+  --sidebar-ring: #dfb4f4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(
+    --sidebar-primary-foreground
+  );
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(
+    --sidebar-accent-foreground
+  );
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: url('figma:asset/62d57ae4a441eb55b3b8077a7b4993a2cf0972fe.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: repeat;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
