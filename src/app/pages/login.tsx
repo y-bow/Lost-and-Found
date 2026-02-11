@@ -5,7 +5,6 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { HeartHandshake, Search, Sparkles, AlertCircle } from "lucide-react";
-import loginBg from "../../../assets/starBG.jpg";
 export function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -83,7 +82,7 @@ export function LoginPage() {
     <div 
       className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
       style={{
-        backgroundImage: `url(${loginBg})`,
+        backgroundImage: "url('/starBG.jpg')",
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
