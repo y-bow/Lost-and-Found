@@ -82,7 +82,7 @@ export function LoginPage() {
     <div 
       className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
       style={{
-        backgroundImage: "url('/starBG.jpg')",
+        backgroundImage: "url('/starBG.png')",
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
