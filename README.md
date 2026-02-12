@@ -168,15 +168,6 @@ A modern, user-friendly web application designed to streamline the process of re
 
 ---
 
-## 📞 Support
-
-For issues, questions, or suggestions:
-- Contact your campus IT support
-- Email: support@saiuniversity.edu.in
-- Check the help section within the portal
-
----
-
 ## 🔒 Privacy & Security
 
 - User information is protected and used only for item recovery purposes
